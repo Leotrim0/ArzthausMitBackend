@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Ärztehaus Bodensee - Dashboard
+{% endblock title %}
+
+{% block main_content %}
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget">
+                    <span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+                    <div class="dash-widget-info text-right">
+                        <h3>12</h3>
+                        <span class="widget-title1">Ärzte<i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget">
+                    <span class="dash-widget-bg2"><i class="fa fa-user-o"></i></span>
+                    <div class="dash-widget-info text-right">
+                        <h3>209</h3>
+                        <span class="widget-title2">Patienten <i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget">
+                    <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+                    <div class="dash-widget-info text-right">
+                        <h3>10</h3>
+                        <span class="widget-title3">Verfügbar <i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget">
+                    <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                    <div class="dash-widget-info text-right">
+                        <h3>50</h3>
+                        <span class="widget-title4">Ausstehend<i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="chart-title">
+                            <h4>Patienten Gesamt</h4>
+                            <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Höher als letzten Monat</span>
+                        </div>	
+                        <canvas id="linegraph"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="chart-title">
+                            <h4>A/E Verhältnis</h4>
+                            <div class="float-right">
+                                <ul class="chat-user-total">
+                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Aufnahme</li>
+                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Entlassung</li>
+                                </ul>
+                            </div>
+                        </div>	
+                        <canvas id="bargraph"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title d-inline-block">Bevorstehende Termine</h4> <a href="appointments.html" class="btn btn-primary float-right">Übersicht</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead class="d-none">
+                                    <tr>
+                                        <th>Patientenname</th>
+                                        <th>Arztname</th>
+                                        <th>Uhrzeit</th>
+                                        <th class="text-right">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="min-width: 200px;">
+                                            <a class="avatar" href="profile.html">HS</a>
+                                            <h2><a href="profile.html">Harald Schmidt <span>Beispielstadt</span></a></h2>
+                                        </td>                 
+                                        <td>
+                                            <h5 class="time-title p-0">Termin mit</h5>
+                                            <p>Dr. Recep Yener</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="time-title p-0">Uhrzeit</h5>
+                                            <p> 09:45 Uhr</p>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Aufnehmen</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="min-width: 200px;">
+                                            <a class="avatar" href="profile.html">JC</a>
+                                            <h2><a href="profile.html">Julius Caesar <span>Beispielstadt</span></a></h2>
+                                        </td>                 
+                                        <td>
+                                            <h5 class="time-title p-0">Termin mit</h5>
+                                            <p>Dr. Cihan Dikme</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="time-title p-0">Uhrzeit</h5>
+                                            <p> 10:00 Uhr</p>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Aufnehmen</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="min-width: 200px;">
+                                            <a class="avatar" href="profile.html">JP</a>
+                                            <h2><a href="profile.html">Jovan Petrovic <span>Beispielstadt</span></a></h2>
+                                        </td>                 
+                                        <td>
+                                            <h5 class="time-title p-0">Termin mit</h5>
+                                            <p>Dr. Nikolas Marmaras</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="time-title p-0">Uhrzeit</h5>
+                                            <p> 10:15 Uhr</p>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Aufnehmen</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="min-width: 200px;">
+                                            <a class="avatar" href="profile.html">NW</a>
+                                            <h2><a href="profile.html">Niklas Wagner <span>Beispielstadt</span></a></h2>
+                                        </td>                 
+                                        <td>
+                                            <h5 class="time-title p-0">Termin mit</h5>
+                                            <p>Dr. Sergio Ramos</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="time-title p-0">Uhrzeit</h5>
+                                            <p> 10:30 Uhr</p>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Aufnehmen</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="min-width: 200px;">
+                                            <a class="avatar" href="profile.html">MB</a>
+                                            <h2><a href="profile.html">Melissa Burton <span>Beispielstadt</span></a></h2>
+                                        </td>                 
+                                        <td>
+                                            <h5 class="time-title p-0">Termin mit</h5>
+                                            <p>Dr. Max Delbrück</p>
+                                        </td>
+                                        <td>
+                                            <h5 class="time-title p-0">Uhrzeit</h5>
+                                            <p> 11:00 Uhr</p>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Aufnehmen</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="card member-panel">
+                    <div class="card-header bg-white">
+                        <h4 class="card-title mb-0">Ärzte</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contact-list">
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a href="profile.html" title="Recep Yener"><img src="{% static 'assets/img/user.jpg' %}" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">Recep Yener</span>
+                                        <span class="contact-date">Verfügbar</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a href="profile.html" title="Cihan Dikme"><img src="{% static 'assets/img/user.jpg' %}" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">Cihan Dikme</span>
+                                        <span class="contact-date">Im OP</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a href="profile.html" title="Nikolas Maramras"><img src="{% static 'assets/img/user.jpg' %}" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">Nikolas Maramras</span>
+                                        <span class="contact-date">Pause</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a href="profile.html" title="Dieter Weingart"><img src="{% static 'assets/img/user.jpg' %}" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">Dieter Weingart</span>
+                                        <span class="contact-date">Verfügbar</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a href="profile.html" title="Ibn Sina"><img src="{% static 'assets/img/user.jpg' %}" alt="" class="w-40 rounded-circle"><span class="status offline"></span></a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">Ibn Sina</span>
+                                        <span class="contact-date">Im Termin</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-cont">
+                                    <div class="float-left user-img m-r-10">
+                                        <a href="profile.html" title="Pierre Almaric"><img src="{% static 'assets/img/user.jpg' %}" alt="" class="w-40 rounded-circle"><span class="status away"></span></a>
+                                    </div>
+                                    <div class="contact-info">
+                                        <span class="contact-name text-ellipsis">Pierre Almaric</span>
+                                        <span class="contact-date">Pause</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center bg-white">
+                        <a href="doctors.html" class="text-muted">Ärzteübersicht</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+{% endblock main_content %}
+
+       
+   

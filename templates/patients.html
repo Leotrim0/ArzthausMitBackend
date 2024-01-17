@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Ärztehaus Bodensee
+{% endblock title %}
+
+
+
+{% block main_content %}
+<div class="page-wrapper">
+	<div class="content">
+		<div class="row">
+			<div class="col-sm-4 col-3">
+				<h4 class="page-title">Patientenübersicht</h4>
+			</div>
+			<div class="col-sm-8 col-9 text-right m-b-20">
+				<a href="{% url 'add_patient' %}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Patienten hinzufügen</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table class="table table-border table-striped custom-table datatable mb-0">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Alter</th>
+								<th>Adresse</th>
+								<th>Telefon</th>
+								<th>Email</th>
+								<th class="text-right">Aktion</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for patient in patient_set %}
+							<tr>
+								<td><img width="28" height="28" src="{% static 'assets/img/user.jpg' %}" class="rounded-circle m-r-5" alt=""> {{patient.first_name}} {{patient.last_name}}</td>
+								<td>{{patient.age}}</td>
+								<td>{{patient.address}}, {{patient.zip_code}}</td>
+								<td>{{patient.phone_number}}</td>
+								<td>{{patient.email}}</td>
+								<td class="text-right">
+									<div class="dropdown dropdown-action">
+										<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+										<div class="dropdown-menu dropdown-menu-right">
+											<a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Bearbeiten</a>
+											<a class="dropdown-item" href="{% url 'delete_patient' patient.pk %}" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Löschen</a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							{% endfor %}
+					
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock main_content %}
